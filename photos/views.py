@@ -1,3 +1,4 @@
+from .models import Category
 from django.shortcuts import render , redirect
 from django.http import HttpResponse
 import datetime as dt
@@ -38,3 +39,15 @@ def past_days_photos(request,past_date):
         return redirect(photos_of_day)
 
     return render(request, 'all-photos/past-photos.html', {"date": date})
+def search_results(request):
+
+    if 'category' in request.GET and request.GET["category"]:
+        search_term = request.GET.get("category")
+        searched_categories = Category.search_by_title(search_term)
+        message = f"{search_term}"
+
+        return render(request, 'all-photos/search.html',{"message":message,"category": searched_categories})
+
+    else:
+        message = "You haven't searched for any category"
+        return render(request, 'all-photos/search.html',{"message":message})
