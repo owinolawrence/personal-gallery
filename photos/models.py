@@ -1,7 +1,27 @@
 from django.db import models
 
-class Profile(models:Model):
-    first_name = models.CharField(max_length =40)
-    last_name = models.CharField(max_length = 40)
-    email=models.EmailField()
-    
+
+class Location(models.Model):
+
+
+    def save_location(self):
+            self.save()
+
+    def delete_location(self):
+            self.save()
+
+class Gategory(models.Model):
+
+    def delete_gategory(self):
+            self.save()
+    def save_gategory(self):
+            self.save()
+
+
+
+class Images(models.Model):
+    def save_images(self):
+        self.save()
+
+    def delete_images(self):
+        self.save()
