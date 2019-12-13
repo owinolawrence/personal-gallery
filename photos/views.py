@@ -43,7 +43,7 @@ def search_results(request):
 
     if 'category' in request.GET and request.GET["category"]:
         search_term = request.GET.get("category")
-        searched_categories = Category.search_by_title(search_term)
+        searched_categories = Category.search_by_category(search_term)
         message = f"{search_term}"
 
         return render(request, 'all-photos/search.html',{"message":message,"category": searched_categories})
@@ -51,3 +51,31 @@ def search_results(request):
     else:
         message = "You haven't searched for any category"
         return render(request, 'all-photos/search.html',{"message":message})
+
+def photo(request):
+    photo = Photo.get_all()
+    return render(request, 'all-photos/images.html', {"image":image })
+
+def detail(request, image_id):
+    image = Image.objects.get(id = image_id)
+    return render(request, 'all-photos/details.html', {"image":image })
+
+def location(request, city):
+    location = Location.objects.get(id =city)
+    return render(request, 'all-photos/location.html', {"image":image })
+
+def admin_dashboard(request):
+    admin = admin
+
+
+
+
+
+
+
+
+
+
+
+
+    
