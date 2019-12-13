@@ -10,12 +10,17 @@ class Location(models.Model):
     def delete_location(self):
             self.save()
 
-class Gategory(models.Model):
+class Category(models.Model):
 
-    def delete_gategory(self):
+    def delete_category(self):
             self.save()
     def save_gategory(self):
             self.save()
+
+    @classmethod
+    def search_by_title(cls,search_term):
+        news = cls.objects.filter(title__icontains=search_term)
+        return photos
 
 
 

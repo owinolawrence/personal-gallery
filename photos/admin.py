@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Location,Gategory,Images
+from .models import Location,Category,Images
 
 admin.site.register(Location)
-admin.site.register(Gategory)
+admin.site.register(Category)
 admin.site.register(Images)
