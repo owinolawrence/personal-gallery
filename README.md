@@ -60,11 +60,11 @@ navigate to admin by adding /admin to your local host url like so :
 127.0.0.1:8000/admin
 
 
-## Running the tests
+## RUNNING THE TESTS
 python3 manage.py tests
 
 
-## Technologies Used
+## TECHNOLOGIES  USED
 Html5 and Css3
 Python
 Bootdstrap 3
@@ -72,5 +72,5 @@ Django
 JQUERY
 
 
-## License
+## LICENSE
 This project is licensed under the {MIT License} - see the LICENSE file for details
