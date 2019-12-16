@@ -1,1 +1,27 @@
-<h1>Welcome to Lawrence gallery</h1>
+{%extends 'all-photos/base.html' %}
+{%block content%}
+{%for photo in photo%}
+
+<body>
+    <div class="container">
+        <h1>Welcome to Wicky is a vibrant community of creatives, sharing copyright free images. All images are released
+            under the wicky License. </h1>
+
+        
+            <div class="modal-header">
+                <img src="{{photo.image.url}}" alt="image">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <hr>
+                <p style="color:rgb(168, 105, 105);">{{photo.name}}</p>
+                <p class="modal-title"><strong>{{photo.description}}</strong></p>
+                <p class="modal-title"><strong>{{photo.location}}</strong></p>
+                <p class="modal-title"><strong>{{photo.category}}</strong></p>
+                <button class="btn btn-primary" onclick="imageurl('{{photo.image.url}}-url')">Copy Image link</button>
+                <input class="form-control input-lg" type="text" value="http://127.0.0.1:8000{{img.image.url}}"
+                    id="{{image.id}}-url">
+            </div>
+       
+    </div>
+</body>
+{%endfor%}
+{%endblock%}
