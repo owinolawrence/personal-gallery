@@ -1,17 +1,13 @@
-from .models import Category,Image
-from django.shortcuts import render , redirect
+from .models import Category,Image,Location
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 import datetime as dt
 
 # Create your views here.
 def index(request):
-    return render (request ,'index.html')
+    photo=Image.display_photo()
+    return render (request ,'index.html',{"photo":photo})
 
-def photos_today(request):
-    date = dt.date.today()
-     # FUNCTION TO CONVERT DATE OBJECT TO FIND EXACT DAY
-    day = convert_dates(date)
-    return render (request, 'all-photos/today-photos.html' , {'date': date})
 
 def convert_dates(dates):
 
@@ -39,18 +35,16 @@ def past_days_photos(request,past_date):
         return redirect(photos_of_day)
 
     return render(request, 'all-photos/past-photos.html', {"date": date})
+
+
 def search_results(request):
 
     if 'category' in request.GET and request.GET["category"]:
         search_term = request.GET.get("category")
-        searched_category = Category.search_by_category(search_term)
-        search_by_category=Image.search_by_category(searched_category)
+        searched_category =Image.search_by_category(search_term)
 
-        if searched_category:
-
-            message = f"{search_term}"
-
-            return render(request, 'all-photos/search.html',{"message":message,"category": searched_category})
+        message = f"{search_term}"
+        return render(request, 'all-photos/search.html',{"message":message,"category": searched_category})
 
     else:
         message = "You haven't searched for any category"
