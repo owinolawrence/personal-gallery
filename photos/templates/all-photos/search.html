@@ -1,6 +1,12 @@
 {% extends 'all-photos/base.html' %}
 {% block content %}
+
+<link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet">
 <div class="container">
+
+    <h1>Welcome to Wicky is a vibrant community of creatives, sharing copyright free images. All images are released
+        under the wicky License. </h1>
+    <br>
 
     <div class="row">
         {% if category %}
@@ -10,16 +16,65 @@
         {% endif %}
 
     </div>
-
+    <br>
+    <br>
     <div class="row">
 
         {% if category %}
-        {% for category in category %}
-        <div class="col-sm-6 col-md-3">
-            <h1>{{category.title}}</h1>
+        {% for cat in category %}
+
+
+
+
+
+        <div class="col-md-4">
+            <a data-toggle="modal" data-target="#{{cat.id}}">
+                <img style="margin-top:20px; margin-bottom:20px;" src="{{cat.image.url}}" alt="Image" height="200"
+                    width="300"><br><br>
+            </a>
+        </div>
+        <div id="{{cat.id}}" class="modal fade" role="dialog"
+            style="background-color:rgb(47, 61, 61);font-family: monospace;">
+            <div class="modal-dialog">
+
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <p>{{cat.name}}</p>
+                        <p>{{cat.description}}</p>
+                    </div>
+                    <div class="modal-body">
+                        <img src="{{cat.image.url}}" alt="Image" width='500' length='600'>
+                        <p>location: {{cat.location}}</p><br>
+                        <p>category:{{cat.category}}</p>
+
+
+                        <button class="btn btn-primary" onclick="imageurl('{{image.id}}-url')">Copy Image
+                            link</button>
+                        <input class="form-control input-lg" type="text" value="http://127.0.0.1:8000{{img.image.url}}"
+                            id="{{image.id}}-url">
+                    </div>
+                    <script>
+                        //  <!-- scripts doesn't work-->
+                        function imageurl(element) {
+                            var image = document.getElementById(element);
+                            image.select();
+                            document.execCommand('copy');
+                            alert("Copied the link of image: " + image.value);
+                        }
+                    </script>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal"
+                            style="background-color:rgb(3, 3, 3);color:white;">Close</button>
+                    </div>
+                </div>
+            </div>
         </div>
         {% endfor %}
         {% endif %}
+
+
+
     </div>
-</div>
-{% endblock %}
+    {% endblock %}
