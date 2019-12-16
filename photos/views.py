@@ -1,4 +1,4 @@
-from .models import Category
+from .models import Category,Image
 from django.shortcuts import render , redirect
 from django.http import HttpResponse
 import datetime as dt
@@ -43,10 +43,14 @@ def search_results(request):
 
     if 'category' in request.GET and request.GET["category"]:
         search_term = request.GET.get("category")
-        searched_categories = Category.search_by_category(search_term)
-        message = f"{search_term}"
+        searched_category = Category.search_by_category(search_term)
+        search_by_category=Image.search_by_category(searched_category)
 
-        return render(request, 'all-photos/search.html',{"message":message,"category": searched_categories})
+        if searched_category:
+
+            message = f"{search_term}"
+
+            return render(request, 'all-photos/search.html',{"message":message,"category": searched_category})
 
     else:
         message = "You haven't searched for any category"
@@ -60,14 +64,19 @@ def detail(request, image_id):
     image = Image.objects.get(id = image_id)
     return render(request, 'all-photos/details.html', {"image":image })
 
-def location(request, city):
-    location = Location.objects.get(id =city)
+def location(request, country):
+    location = Location.objects.get(id =country)
     return render(request, 'all-photos/location.html', {"image":image })
 
 def admin_dashboard(request):
-    admin = admin
+    admin = Admin
 
-
+def category(request,category_id):
+    try:
+        category = category.objects.get(id = category_id)
+    except DoesNotExist:
+        raise Http404()
+    return render(request,"all-photos/category.html", {"category":category})
 
 
 

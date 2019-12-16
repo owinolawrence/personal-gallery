@@ -3,18 +3,18 @@
 <div class="container">
 
     <div class="row">
-        {% if categories%}
-        <h2>Found {{ categories|length }} of searched term {{message}}</h2>
+        {% if category %}
+        <h2>Found {{ category|length }} of searched term {{message}}</h2>
         {% else %}
-        <h2> Found no categories for {{message}}</h2>
+        <h2> Found no category for {{message}}</h2>
         {% endif %}
 
     </div>
 
     <div class="row">
 
-        {% if categories %}
-        {% for category in categories %}
+        {% if category %}
+        {% for category in category %}
         <div class="col-sm-6 col-md-3">
             <h1>{{category.title}}</h1>
         </div>
