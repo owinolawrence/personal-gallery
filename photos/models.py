@@ -29,17 +29,18 @@ class Category(models.Model):
         category.update(category=name)
         return category
 
-    @classmethod
-    def search_by_category(cls,search_term):
-        # image = cls.objects.filter(category__category__icontains=search_term)
-        image = cls.objects.filter(category__icontains=search_term)
-        return image
+    
 class Image(models.Model):
-    image = models.ImageField(upload_to = 'pictures/')
+    image = models.ImageField(upload_to ='pictures/')
     name = models.CharField(max_length =60)
     description = models.TextField()
     location = models.ForeignKey(Location)
-    category = models.ForeignKey(Category,db_column='category')
+    category_item = models.ForeignKey(Category)
+
+    @classmethod
+    def display_photo(cls):
+        photo=cls.objects.all()
+        return photo
     def save_image(self):
         self.save()
     @classmethod
@@ -48,7 +49,7 @@ class Image(models.Model):
         return images
     @classmethod
     def search_by_category(cls,search_term):
-        image = cls.objects.filter(category__category__contains=search_term)
+        image = cls.objects.filter(category_item__category__icontains=search_term)
         return image
     @classmethod
     def update(cls,id,name):
