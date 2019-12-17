@@ -1,5 +1,5 @@
 h1{
-    color: blue;
+    color: white;
     text-align: center;
     font-family: 'Abril Fatface', cursive;
     font-size: 40px;
@@ -11,7 +11,7 @@ h2{
 }
 
 body{
-    color:blue;
+    background-color: #393e46;
 }
 
 .card {
