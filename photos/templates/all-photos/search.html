@@ -38,13 +38,11 @@
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                             <p>{{cat.name}}</p>
-                           
-                            
+                            <p>{{cat.description}}</p>
                         </div>
                         <div class="modal-body">
                             <img src="{{cat.image.url}}" alt="Image" width='500' length='600'>
                             <p>location: {{cat.location}}</p><br>
-                            <p>{{cat.description}}</p>
 
                             <button class="btn btn-primary" onclick="imageurl('{{image.id}}-url')">copy mage
                                 link address</button>
