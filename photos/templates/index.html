@@ -9,13 +9,13 @@
     <div class="col-md-4">
         <div class="card">
             <a data-toggle="modal" data-target="#{{photo.id}}">
-                <img style="padding-top:40px; padding-bottom:40px;" src="{{photo.image.url}}" alt="Image" height="300"
+                <img style="padding-top:40px; padding-bottom:40px;" src="{{photo.image.cdn_url}}" alt="Image" height="300"
                     width="300"><br><br>
             </a>
         </div>
     </div>
     <div id="{{photo.id}}" class="modal fade" role="dialog"
-        style="background-color:rgb(36, 212, 212);font-family: monospace;">
+        style="background-color:rgb(104, 109, 109);font-family: monospace;">
         <div class="modal-dialog">
 
             <div class="modal-content">
@@ -26,14 +26,13 @@
                         <p>{{image.description}}</p>
                     </div>
                     <div class="modal-body">
-                        <img src="{{photo.image.url}}" alt="Image" width='500' length='600'>
+                        <img src="{{photo.image.cdn_url}}" alt="Image" width='500' length='600'>
                         <p>location: {{image.location}}</p><br>
-
 
                         <button class="btn btn-primary" onclick="imageurl('{{image.id}}-url')">Copy Image
                             link</button>
                         <input class="form-control input-lg" type="text"
-                            value="{{photo.image.url}}" id="{{image.id}}-url">
+                            value="{{photo.image.cdn_url}}" id="{{image.id}}-url">
                     </div>
                 </div>
                 <script>
