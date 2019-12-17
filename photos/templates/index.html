@@ -4,7 +4,7 @@
 <link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet">
 
 <body>
-    
+
 
     <div class="col-md-4">
         <div class="card">
@@ -23,13 +23,14 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <p>{{photo.name}}</p>
-                        <p>{{photo.description}}</p>
-                    </div>
-                    <div class="modal-body">
-                        <img src="{{photo.image.url}}" alt="Image" width='500' length='600'>
-                        <p>location: {{photo.location}}</p><br>
-                        <p>{{photo.description}}</p>
 
+                    </div>
+                    <div class="card">
+                        <div class="modal-body">
+                            <img src="{{photo.image.url}}" alt="Image" width='500' length='600'>
+                            <p>location: {{photo.location}}</p><br>
+                            <p>{{photo.description}}</p>
+                        </div>
 
                         <button class="btn btn-primary" onclick="imageurl('{{image.id}}-url')">Copy Image
                             link</button>
