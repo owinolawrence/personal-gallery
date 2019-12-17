@@ -1,27 +1,56 @@
 {%extends 'all-photos/base.html' %}
 {%block content%}
 {%for photo in photo%}
+<link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet">
 
 <body>
-    <div class="container">
-        <h1>Welcome to Wicky is a vibrant community of creatives, sharing copyright free images. All images are released
-            under the wicky License. </h1>
 
-        
-            <div class="modal-header">
-                <img src="{{photo.image.url}}" alt="image">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <hr>
-                <p style="color:rgb(168, 105, 105);">{{photo.name}}</p>
-                <p class="modal-title"><strong>{{photo.description}}</strong></p>
-                <p class="modal-title"><strong>{{photo.location}}</strong></p>
-                <p class="modal-title"><strong>{{photo.category}}</strong></p>
-                <button class="btn btn-primary" onclick="imageurl('{{photo.image.url}}-url')">Copy Image link</button>
-                <input class="form-control input-lg" type="text" value="http://127.0.0.1:8000{{img.image.url}}"
-                    id="{{image.id}}-url">
-            </div>
-       
+
+    <div class="col-md-4">
+        <div class="card">
+            <a data-toggle="modal" data-target="#{{photo.id}}">
+                <img style="padding-top:40px; padding-bottom:40px;" src="{{photo.image.url}}" alt="Image" height="300"
+                    width="300"><br><br>
+            </a>
+        </div>
     </div>
+    <div id="{{photo.id}}" class="modal fade" role="dialog"
+        style="background-color:rgb(36, 212, 212);font-family: monospace;">
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+                <div class="card">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <p>{{image.name}}</p>
+                        <p>{{image.description}}</p>
+                    </div>
+                    <div class="modal-body">
+                        <img src="{{photo.image.url}}" alt="Image" width='500' length='600'>
+                        <p>location: {{image.location}}</p><br>
+
+
+                        <button class="btn btn-primary" onclick="imageurl('{{image.id}}-url')">Copy Image
+                            link</button>
+                        <input class="form-control input-lg" type="text"
+                            value="http://127.0.0.1:8000{{photo.image.url}}" id="{{image.id}}-url">
+                    </div>
+                </div>
+                <script>
+
+
+                    function imageurl(element) {
+                        var image = document.getElementById(element);
+                        image.select();
+                        document.execCommand('copy');
+                        alert("Copied the link of image: " + image.value);
+                    }
+                </script>
+
+            </div>
+        </div>
+
+    </div>
+    {%endfor%}
+    {%endblock%}
 </body>
-{%endfor%}
-{%endblock%}
